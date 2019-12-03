@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jQuery招聘网站选择地区行业职位 - xw素材网</title>
+	<link rel="stylesheet" type="text/css" href="css.css" />
+	<link rel="stylesheet" type="text/css" href="alpha.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="drag.js"></script>
+	<script type="text/javascript" src="industry_arr.js"></script>
+</head>
+
+<body>
+
+	<form method="POST" action="">
+		<script type="text/javascript" src="industry_func.js"></script>
+		<input id="btn_IndustryID_2" type="button" value="请选择行业" onclick="IndustrySelect_2()" />
+	</form>
+	<div id="maskLayer" style="display:none">
+		<iframe id="maskLayer_iframe" frameBorder=0 scrolling=no style="filter:alpha(opacity=50)"></iframe>
+		<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
+		<div id="drag">
+			<h3 id="drag_h"></h3>
+			<div id="drag_con"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		// 是否在数组内
+		function in_array(needle, haystack) {
+			if (typeof needle == 'string' || typeof needle == 'number') {
+				for (var i in haystack) {
+					if (haystack[i] == needle) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+	</script>
+</body>
+
+</html>

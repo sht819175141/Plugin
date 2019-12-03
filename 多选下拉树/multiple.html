@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <link rel="stylesheet" type="text/css" href="EasyUI/easyui.css" />
+    <script type="text/javascript" src="EasyUI/jquery.min.js"></script>
+    <script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#ddlLine').combotree({
+                valueField: "id", //Value×Ö¶Î
+                textField: "value", //Text×Ö¶Î
+                multiple: true,
+                data: [
+                            {
+                                "id": 1,
+                                "text": "All",
+                                "children": [
+                                    { "id": 13, "text": "C1" },
+                                    { "id": 14, "text": "C2" },
+                                    { "id": 15, "text": "C3"}
+                                ]
+                            }
+                        ]
+,
+                //                url: "tree_data2.json", 
+                onCheck: function (node, checked) {
+                    //ÈÃÈ«Ñ¡²»ÏÔÊ¾
+                    $("#ddlLine").combotree("setvalue", $("#ddlLine").combobox("getvalue").toString().replace("È«Ñ¡,", ""));
+                },
+                onClick: function (node, checked) {
+                    //ÈÃÈ«Ñ¡²»ÏÔÊ¾
+                    $("#ddlLine").combotree("setText", $("#ddlLine").combobox("getText").toString().replace("È«Ñ¡,", ""));
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <input id="ddlLine" class="easyui-combotree" style="width: 205px; height: 24px;">
+</body>
+</html>

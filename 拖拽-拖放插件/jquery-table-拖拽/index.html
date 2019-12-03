@@ -1,0 +1,126 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jqeruy UI 拖拽练习</title>
+	<!--导入jquery插件-->
+	<script type="text/javascript" src="jQuery1.11.3.min.js"></script>
+	<!--导入jqueryUI插件-->
+	<script type="text/javascript" src="jquery-ui.js"></script>
+
+	<!--自写脚本-->
+	<script type="text/javascript" language="javascript">
+		//在页面加载完之后加载jquery
+		$().ready(function (e) {
+			//拖拽复制体
+			$('td[id^="draggable"]').draggable({
+				helper: "clone",
+				cursor: "move"
+			});
+
+			//释放后
+			$('td[id^="target"]').droppable({
+				drop: function (event, ui) {
+					$(this).children().remove();
+					var source = ui.draggable.clone();
+					$('<img/>', {
+						src: 'btn_delete.png',
+						style: 'display:none',
+						click: function () {
+							source.remove();
+						}
+					}).appendTo(source);
+
+
+					source.mouseenter(function () {
+						$(this).find("img").show();
+					});
+
+					source.mouseleave(function () {
+						$(this).find("img").hide();
+					});
+
+					$(this).append(source);
+
+				}
+			});
+		});
+	</script>
+	<!--自写脚本-->
+
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+
+		table td {
+			empty-cells: show
+		}
+	</style>
+
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td>
+				<table border="2">
+					<tr height="40">
+						<td id="draggable1" width="110" bgcolor="peru">克隆体1</td>
+					</tr>
+					<tr height="40">
+						<td id="draggable2" width="110" bgcolor="lightgreen">克隆体2</td>
+					</tr>
+					<tr height="40">
+						<td id="draggable3" width="110" bgcolor="salmon">克隆体3</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table border="2">
+					<tr height="40">
+						<td width="150">标题1</td>
+						<td width="150">标题2</td>
+						<td width="150">标题3</td>
+						<td width="150">标题4</td>
+					</tr>
+					<tr height="40">
+						<td width="150" id="target11"></td>
+						<td width="150" id="target12"></td>
+						<td width="150" id="target13"></td>
+						<td width="150" id="target14"></td>
+					</tr>
+					<tr height="40">
+						<td width="150" id="target21"></td>
+						<td width="150" id="target21"></td>
+						<td width="150" id="target21"></td>
+						<td width="150" id="target21"></td>
+					</tr>
+					<tr height="40">
+						<td width="150" id="target31"></td>
+						<td width="150" id="target31"></td>
+						<td width="150" id="target31"></td>
+						<td width="150" id="target31"></td>
+					</tr>
+					<tr height="40">
+						<td width="150" id="target41"></td>
+						<td width="150" id="target41"></td>
+						<td width="150" id="target41"></td>
+						<td width="150" id="target41"></td>
+					</tr>
+					<tr height="40">
+						<td width="150" id="target51"></td>
+						<td width="150" id="target51"></td>
+						<td width="150" id="target51"></td>
+						<td width="150" id="target51"></td>
+					</tr>
+					<tr height="40">
+						<td width="150" id="target61"></td>
+						<td width="150" id="target61"></td>
+						<td width="150" id="target61"></td>
+						<td width="150" id="target61"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+</body>

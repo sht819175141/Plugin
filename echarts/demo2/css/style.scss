@@ -1,0 +1,157 @@
+html,body,.contianer{
+	width: 100%;
+	height: 100%;
+}
+
+.contianer{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+.header {
+    width: 100%;
+    height: 39px;
+    background: #3DA9FE;
+    display: flex;
+    line-height: 40px;
+    text-align: center;
+    a {
+      flex: 1;
+      color:#fff;
+    }
+    a:nth-child(1){
+      float:left;
+    }
+    a:nth-child(2){
+      flex:8;
+    }
+    a:nth-child(3){
+     float:right;
+    }
+ }
+
+.list-nav{
+	height: 40px;
+	width: 100%;
+	border-bottom: 1px solid #DEDDE0;
+	
+	.nav{
+		height: 100%;
+		width: 100%;
+		display: -webkit-box;
+		-webkit-box-orient: horizontal;
+		.on{
+			display: block;
+			width: 100%;
+			-webkit-box-flex: 1;
+			text-align: center;
+			line-height: 40px;
+			color: #3DA9FE;
+			font-size: 14px;
+			border-bottom: #F2F2F2 2px solid;
+			border-right: 1px solid #EEEEEE;
+			border-left: 1px solid #EEEEEE;
+			position: relative;
+			.line{
+				width: 100%;
+				height: 2px;
+				background: #3DA9FE;
+				position: absolute;
+				left: 3px;
+				bottom: -2px;
+				z-index: 100;
+			}
+		}
+		.bor{
+			border-left: 1px solid #EEEEEE;
+		}
+	}
+}
+.wrap{
+	-webkit-box-flex: 1;
+	overflow: auto;
+	width: 100%;
+
+	.wrap-list{
+		width: 100%;
+		overflow: hidden;
+		.wrap-list-o{
+			display: -webkit-box;
+		}
+	}
+}
+.main{
+	width: 100%;
+	
+	.list{
+		margin-left: 15px;
+		height: 90px;
+		border-bottom: 1px solid #E4E3E6;
+		border-right: 1px solid #E4E3E6;
+		display: -webkit-box;
+		padding-right: 15px;
+		.dt{
+			width: 100px;
+			height: 100%;
+			margin-right: 10px;
+			img{
+				width: 100px;
+				height: 75px;
+				margin-top: 5px;
+			}
+		}
+		.dd{
+			-webkit-box-flex: 1;
+			h3{
+				margin-top: 6px;
+				white-space: nowrap;
+				overflow: hidden;
+				font-size: 14px;
+			}
+			.fu-title{
+				margin-top: 4px;
+				color: #ccc;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				font-size: 14px;
+			}
+			.dd-bottom{
+				margin-top: 10px;
+				.dd-left{
+					width: 50%;
+					float: left;
+					span{
+						display: inline-block;
+						padding: 2px 3px;
+						background: #3DA9FE;
+						border-radius: 10px;
+						margin-right: 2px;
+					}
+				}
+				.dd-right{
+					float: right;
+					font-size: 10px;
+					color: #CF2D28;
+					line-height: 1.6;
+					span{
+						display: inline-block;
+						font-weight: bold;
+						font-size: 14px;
+					}
+					
+				}
+			}
+		}
+	}
+}
+.mian-two{
+	font-size: 36px;
+	color: red;
+	text-align: center;
+}
+.mian-three{
+	font-size: 36px;
+	color: red;
+	text-align: center;
+}

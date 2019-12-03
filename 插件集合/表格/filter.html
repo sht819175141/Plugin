@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<label>筛选</label> 
+	<input id="searchbox" type="text" />
+	<input type="button" />
+	<table>
+	<thead>
+	    <tr>
+	    <td>姓名</td>
+	    <td>性别</td>
+	    <td>暂住地</td>
+	    </tr>
+	</thead>
+	<tbody>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>李山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>女</td>
+		    <td>湖北</td>
+	    </tr>
+	    <tr>
+		    <td>张山</td>
+		    <td>男</td>
+		    <td>河北</td>
+	    </tr>
+	</tbody>
+</table>
+<script src="../js/jquery-1.11.1.js"></script>
+<script> 
+	$(function () {
+        $("#searchbox").keyup(function () {
+            $("table tbody tr").hide().filter(":contains('"+($(this).val())+"')").show();
+        }).keyup();
+    });
+</script>
+</body>
+</html>

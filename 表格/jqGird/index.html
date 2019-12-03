@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+
+	<!-- jquery插件包-必要 -->
+	<!-- 这个是所有jquery插件的基础，首先第一个引入 -->
+	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+	
+	<!-- jqGrid插件包-必要 -->
+	<script type="text/javascript" src="jqgrid/js/jquery.jqGrid.src.js"></script>
+	
+	<!-- jqGrid插件的多语言包-非必要 -->
+	<!-- 在jqgrid/js/i18n下还有其他的多语言包，可以尝试更换看效果 -->
+	<script type="text/javascript" src="jqgrid/js/i18n/grid.locale-cn.js"></script>
+
+	<!-- jqGrid组件基础样式包-必要 -->
+	<link rel="stylesheet" href="jqgrid/css/ui.jqgrid.css" />
+	
+	<!-- jqGrid主题包-非必要 --> 
+	<!-- 在jqgrid/css/css这个目录下还有其他的主题包，可以尝试更换看效果 -->
+	<link rel="stylesheet" href="jqgrid/css/css/redmond/jquery-ui-1.8.16.custom.css" />
+</head>
+<body>
+	<table id="list2"></table> 
+	<div id="pager2"></div>
+	<br>
+	<script>
+
+		$(window).on('resize.jqGrid', function () {
+			$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+			$(grid_selector).jqGrid( 'setGridheight', $(window).width() );
+	    })
+		//resize on sidebar collapse/expand
+		var parent_column = $("#list2").closest('[class*="col-"]');
+
+		$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+			if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+				//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+				setTimeout(function() {
+					$(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+				}, 0);
+			}
+	    })
+
+		jQuery("#list2").jqGrid({
+			url : 'data/JSONData.json',
+			datatype : "json",
+			colModel : [
+	             {name : 'id',index : 'id',width : 55,align:'center'}, 
+	             {name : 'invdate',index : 'invdate',width : 90,align:'center'}, 
+	             {name : 'name',index : 'name asc, invdate',width : 100,align:'center'}, 
+	             {name : 'amount',index : 'amount',width : 80,align:'center'}, 
+	             {name : 'tax',index : 'tax',width : 80,align:'center'}, 
+	             {name : 'total',index : 'total',width : 80,align:'center'}, 
+	             {name : 'note',index : 'note',width : 150,sortable : false,align:'center'} 
+	           ],
+			pager : '#pager2',
+			mtype : "post",
+			viewrecords : true,
+			multiselect:true,
+			rowNum:20,
+			rowList:[10,20,30]
+		});
+
+		$(window).triggerHandler('resize.jqGrid');
+	//这是设置复杂表头的
+
+		jQuery("#list2").jqGrid('setGroupHeaders', {
+	          useColSpanStyle: false, 		
+	          groupHeaders:[
+	            {startColumnName: 'id', numberOfColumns: 2, titleText: '<b>354ad</b>'},
+	            {startColumnName: 'tax', numberOfColumns: 2, titleText: 'Shiping'}
+	          ]
+	    })
+	</script>
+</body>
+</html>

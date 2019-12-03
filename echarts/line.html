@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        .box {
+            height: 660px;
+            border: 1px solid #ccc;
+        }
+
+        .radar {
+            height: 660px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="main"></div>
+    <script src="js/echarts.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 柱状图，加折线图。使用刚指定的配置项和数据显示图表。
+        myChart.setOption({
+            // 指定图表的配置项和数据
+            title: {
+                text: 'ECharts 入门示例',
+                subtext: 'data from PM25.in',
+                sublink: 'http://www.pm25.in',
+                left: 'center',
+                textStyle: {
+                    color: '#f00'
+                }
+            },
+            tooltip: { //气泡提示配置, 触发类型，默认数据触发，可选为：'axis'
+                trigger: 'item'
+            },
+            legend: {
+                padding: 1, // 图例内边距，单位px，默认上下左右内边距为5
+                itemGap: 10, //legendd各个item之间的间隔，横向布局时为水平间隔，纵向布局时为纵向间隔
+                data: ['销量', '价格', "成本"]
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {
+                data: ["0", "5", "10", "15", "20", "25"],
+                type: 'value', // 坐标轴类型，纵轴默认为数值轴，类目轴则参考xAxis说明
+                boundaryGap: [0.1, 0.1], // 坐标轴两端空白策略，数组内数值代表百分比
+                splitNumber: 4 // 数值轴用，分割段数，默认为5
+
+            },
+            series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20]
+                },
+                {
+                    name: '价格', // 系列名称
+                    type: 'line', // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+                    data: [112, 23, 45, 56, 233, 343]
+                },
+                {
+                    name: '成本', // 系列名称
+                    type: 'effectScatter', // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+                    data: [5, 20, 36, 10, 10, 20],
+                    hoverAnimation: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#f4e925',
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    zlevel: 1
+                }
+            ]
+        });
+        // 处理点击事件并且跳转到相应的百度搜索页面
+        myChart.on('click', function(params) {
+            window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
+        });
+    </script>
+</body>
+
+</html>

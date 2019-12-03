@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery多条件筛选下拉选择框代码 - 站长素材</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class="selectbox">
+    <div class="selemediv">
+    <div class="selemenu " >
+    <span class="sqinput">洛杉矶</span><span class="csinput"></span></div>
+                            
+                            <div class="citylist2">
+                              <div class="xzk">
+                                <div class="leibie">商圈</div>
+                                 <ul class="shangquan">
+                                 <li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 </ul>
+                             </div>
+                             <div class="xzk">
+                                <div class="leibie">城市</div>
+                                 <ul class="chengshi">
+                                 <li class="active">菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 <li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 <li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 <li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 <li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 <li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li><li>菜单一</li>
+                                 <li>菜单二</li>
+                                 <li>菜单三</li>
+                                 <li>菜单四</li>
+                                 </ul>
+                             </div>
+                           </div>
+    </div>
+    <div class="selemediv"> <div class="selemenu">请选择金额类型</div>
+                            <DIV class="citylist">
+                             <span>菜单一</span>
+                             <span>菜单二</span>
+                             <span>菜单三</span>
+                             <span>菜单四</span>
+                            </div>
+    </div>
+    <div class="selemediv"> <div class="selemenu">请选择金额类型</div>
+                            <DIV class="citylist">
+                             <span>菜单一</span>
+                             <span>菜单二</span>
+                             <span>菜单三</span>
+                             <span>菜单四</span>
+                            </div>
+    </div>
+    <div class="selemediv"> <div class="selemenu">请选择金额类型</div>
+                            <DIV class="citylist">
+                             <span>菜单一</span>
+                             <span>菜单二</span>
+                             <span>菜单三</span>
+                             <span>菜单四</span>
+                            </div>
+    </div>
+    <div class="selemediv"> <div class="selemenu">请选择金额类型</div>
+                            <DIV class="citylist">
+                             <span>菜单一</span>
+                             <span>菜单二</span>
+                             <span>菜单三</span>
+                             <span>菜单四</span>
+                            </div>
+    </div>
+
+</div>
+<div style="height:500px; color:#fff" id="cs"></div>
+<script>
+$(".selemenu").click(function(){
+	$(this).next().slideToggle();
+	$(this).parents().siblings().find(".citylist,.citylist2").slideUp();
+	})
+$(".citylist span").click(function(){
+	var text=$(this).text();
+	$(this).parent().prev().html(text);
+	$(this).parent().prev().css("color","#666")
+	$(this).parent().fadeOut();
+	
+	})
+$(".shangquan li").click(function(){
+	$(".shangquan li").removeClass("active")
+	$(this).addClass("active")
+	var text1=$(this).text();
+	$(".sqinput").html(text1)
+	})
+$(".chengshi li").click(function(){
+	$(".chengshi li").removeClass("active")
+	$(this).addClass("active")
+    var text2=$(this).text();
+	$(".csinput").html("-"+text2)
+	$(".citylist2").slideUp();
+	})
+  $(function(){
+    $(document).not($(".selectbox")).click(function(){
+        $(".citylist,.citylist2").slideUp();
+	 })
+	 $(".selectbox").click(function(event){
+        event.stopPropagation();
+    })
+	})
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗.</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Flask upload with Dropzone example</title>
+  <link rel="stylesheet" href="dropzone.css" type="text/css" />
+
+</head>
+
+<body>
+  <div id="myId" class="dropzone" style="width: 800px; height: 300px;">点我上传</div>
+  <script src="dropzone.js"></script>
+  <!--<script src="{{ url_for('static', filename='jquery.js') }}"></script>-->
+  <script type="text/javascript">
+    //下面两行是js和jquery的方式实现绑定div的例子，你选择一种即可
+    var myDropzone = new Dropzone("#myId", {
+      url: "{{ url_for('upload_file') }}"
+    });
+    /*$("#myId").dropzone({
+      url: "{{ url_for('upload_file') }}"
+    });*/
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/swiper.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .blue-slide {
+                background: #4390EE;
+            }
+
+            .red-slide {
+                background: #CA4040;
+            }
+
+            .orange-slide {
+                background: #FF8604;
+            }
+
+            .swiper-slide {
+                line-height: 300px;
+                color: #000000;
+                font-size: 36px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="swiper-container" style="width:656px">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide blue-slide">slider1</div>
+                <div class="swiper-slide red-slide">slider2</div>
+                <div class="swiper-slide orange-slide">slider3</div>
+                <div class="swiper-slide blue-slide">slider4</div>
+                <div class="swiper-slide red-slide">slider5</div>
+                <div class="swiper-slide orange-slide">slider6</div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        <script src="../../../jQueryVersion/jquery-1.8.3.min.js"></script>
+        <script src="js/swiper.min.js"></script>
+        <script language="javascript">
+            var mySwiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                prevButton: '.swiper-button-prev',
+                nextButton: '.swiper-button-next',
+                effect: 'coverflow',
+                slidesPerView: 2,
+                centeredSlides: true,
+                loop: true,
+                //autoplay: 5000,
+                speed: 1000,
+                coverflow: {
+                    rotate: 0,
+                    stretch: 10,
+                    depth: 150,
+                    modifier: 1,
+                    slideShadows: true
+                },
+                onTransitionEnd: function (swiper) {
+                    //获取下面的img图片
+                    var imgurl = $('.swiper-slide-active img').attr("src");
+                    //获取内容文本
+                    var txt = $('.swiper-slide-active').html();
+
+                    console.log("内容：" + txt);
+
+                }
+            })
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>可拖动</title>
+  <style type="text/css">
+    #source {
+      border: 1px solid #000000;
+      background-color: #ccc;
+      width: 80px;
+      height: 80px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="source">拖动</div>
+  <script type="text/javascript">
+    var source = document.getElementById("source");
+    source.ondragstart = function(evt) {
+      //让拖动携带数据
+      evt.dataTransfer.setData("text/plain", "www.fkjava.org");
+    }
+
+    document.ondragover = function(evt) {
+      //取消事件的默认行为
+      return false;
+    }
+
+    document.ondrop = function(evt) {
+      source.style.position = "absolute";
+      source.style.left = evt.pageX + "px";
+      source.style.top = evt.pageY + "px"; //取消事件的默认行为
+      return false;
+    }
+  </script>
+</body>
+
+</html>

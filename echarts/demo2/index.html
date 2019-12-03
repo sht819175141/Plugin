@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="contianer"  ng-controller="mynote">
+		<header class="header">
+			<a href=""><i class="fa fa-chevron-left"></i></a>
+            <a href="">天行者户外</a>
+            <a href=""><i class="fa fa-align-justify"></i></a>
+		</header>
+		<nav class="list-nav">
+			<div class="nav">
+				<div href="javascript:;" class="bor on bg" ng-click="tab(0)">价格<div class="line"></div></div>
+				<div href="javascript:;" class="on" ng-click="tab(1)">销售</div>
+				<div href="javascript:;" class="on" ng-click="tab(2)">上架</div>
+			</div>
+		</nav>
+		<div class="wrap">
+			<div class="wrap-list">
+				<div class="wrap-list-o">
+					<section class="main mian-one">
+						<div class="list" ng-repeat="itme in obj.data">
+							<div class="dt">
+								<img ng-src="http://m.skywalk-er.com/{{itme.title_pic}}">
+							</div>
+							<div class="dd">
+								<h3 ng-bind="itme.title"></h3>
+								<p ng-bind="itme.description" class="fu-title"></p>
+								<div class="dd-bottom">
+									<p class="dd-left"><span ng-bind="itme.traveling_way"></span>0人出行</p>
+									<p class="dd-right">￥<span>187</span>元</p>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="main mian-two">
+						two
+					</section>
+					<section class="main mian-three">
+						three
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./js/angular.min.js"></script>
+	<script src="./js/script.js"></script>
+</body>
+</html>

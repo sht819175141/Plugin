@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <DIV id=demo style="BACKGROUND: #ffffff; OVERFLOW: hidden; WIDTH: 150px; COLOR: #0000ff; HEIGHT: 200px">
+        <DIV id=demo1>
+            <div align="center">
+                <A href="javascript:;">
+                    阿斯顿阿斯顿阿斯顿阿斯顿阿斯顿阿啥阿啥阿斯顿阿斯顿阿斯顿阿斯顿阿斯顿阿啥阿啥阿斯顿阿斯顿阿斯顿阿斯顿阿斯顿阿啥阿啥阿斯顿阿斯顿阿斯顿阿斯顿阿斯顿阿啥阿啥
+                </A>
+            </div>
+        </DIV>
+        <DIV id=demo2></DIV>
+    </DIV>
+
+
+    <SCRIPT language="javascript">
+        var speed = 50;
+        demo2.innerHTML = demo1.innerHTML;
+        function Marquee() {
+            if (demo2.offsetTop - demo.scrollTop <= 0) {
+                demo.scrollTop -= demo1.offsetHeight;
+            } else {
+                demo.scrollTop++;
+            }
+        }
+        var MyMar = setInterval(Marquee, speed);
+
+        /*DIRECTION：用于设定文本滚动的方向,可以设定的值有：LEFT,RIGHT。此属性不是必须使用的。　 　　　　
+        例：[MARQUEE　DIRECTION="LEFT" ]文字向左边滚动 [/MARQUEE]　 　　　　
+            [MARQUEE　DIRECTION="RIGHT" ]文字向右边滚动 [/MARQUEE]　 　　　
+
+            HEIGHT：用于设定滚动字幕的高度,高度可用像素或可视页面的百分比来表示。此属性不是必须使用的。　 　　　　
+        例：[MARQUEE　HEIGHT="10%"]滚动字幕的高度是可视页面的10%[ /MARQUEE]　 　　　　
+            [MARQUEE　HEIGHT="12" ]滚动字幕的高度是12像素 [/MARQUEE]　 　　　　　　 　　　　
+            WIDTH：用于设定字幕的宽度,宽度可用像素或可视页面的百分比来表示。此属性不是必须使用的。　 　
+            　　　
+        例：[MARQUEE　WIDTH="90%"] 滚动字幕的宽度是可视页面的90% [/MARQUEE]　 　　　　
+            [MARQUEE　WIDTH="200" ]滚动字幕的宽度是200像素 [/MARQUEE　]
+        　　HSPACE：用于设定滚动字幕左右的空白空间,空白空间用像素表示。此属性不是必须使用的。　
+         　　　　
+        例：[MARQUEE　HSPACE="15" ]滚动字幕左右空白空间为15个像素 [/MARQUEE]　 　　　　　 　　　　
+            VSPACE：用于设定滚动字幕上下的空白空间,空白空间用像素表示。此属性不是必须使用的。　 　　
+            　　
+        例：[MARQUEE　VSPACE="2"] 滚动字幕上下的空白空间为2个像素 [/MARQUEE]　 　　　　　 　　　　
+            LOOP：用于设定滚动字幕的滚动次数。当LOOP的值为"INFINITE"或是"-1"时,则文字会无限制地滚动。此属性不是必须使用的。
+
+        例：[MARQUEE　LOOP="-1" ]文字滚动无数次 [/MARQUEE]　 　　　　
+            [MARQUEE　LOOP="5" ]文字滚动5次 [/MARQUEE]　 　　　 　　　　
+            SCROLLAMOUNT：用于设定每个连续滚动文本后面的间隔,该间隔用像素表示。此属性不是必须使用的。　
+             　　　　
+        例：[MARQUEE　SCROLLAMOUNT="10"] 此文本后面的间隔为10个像素 [/MARQUEE]
+        　  SCROLLDELAY：用于设定两次滚动操作之间的间隔时间,该时间以毫秒为单位。此属性不是必须使用的。
+
+        例：[MARQUEE　SCROLLDELAY="5"] 此文本两次滚动之间的间隔时间为5毫秒
+            [/MARQUEE] ONMOUSEOUT=this.start() ：用来设置鼠标移出该区域时*/
+    </SCRIPT>
+
+
+</body>
+
+</html>

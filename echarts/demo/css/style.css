@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box; }
+
+#wrap {
+  width: 100%; }
+
+.header {
+  width: 100%;
+  height: 39px;
+  background: #3DA9FE;
+  display: flex;
+  line-height: 40px;
+  text-align: center; }
+  .header a {
+    flex: 1;
+    color: #fff; }
+  .header a:nth-child(1) {
+    float: left; }
+  .header a:nth-child(2) {
+    flex: 8; }
+  .header a:nth-child(3) {
+    float: right; }
+
+.nav {
+  width: 100%;
+  height: 44px;
+  display: -webkit-box; }
+  .nav a {
+    text-decoration: none;
+    display: block;
+    -webkit-box-flex: 1;
+    text-align: center;
+    border: solid 1px #ccc;
+    color: #3da9fe; }
+    .nav a i {
+      display: block;
+      height: 42px;
+      line-height: 42px;
+      font-style: normal; }
+      .nav a i.on {
+        border-bottom: solid 3px #3da9fe; }
+
+.list {
+  width: 100%;
+  padding: 0px 15px; }
+  .list dl {
+    display: -webkit-box;
+    padding: 10px 0px;
+    border-bottom: solid 1px;
+    overflow: hidden; }
+    .list dl dt {
+      width: 30%;
+      margin-right: 10px; }
+      .list dl dt img {
+        width: 100%; }
+    .list dl dd {
+      width: 70%; }
+      .list dl dd p {
+        width: 85%; }
+      .list dl dd .p1 {
+        font-size: 14px;
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; }
+      .list dl dd .p2 {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: #999; }
+      .list dl dd .p3 {
+        line-height: 40px; }
+        .list dl dd .p3 span {
+          width: 30px;
+          height: 20px;
+          border-radius: 10px;
+          background: #3da9fe;
+          margin-right: 10px;
+          color: #fff; }
+        .list dl dd .p3 i {
+          font-style: normal;
+          color: #3da9fe; }
+        .list dl dd .p3 strong {
+          float: right;
+          font-size: 20px;
+          color: red; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 660px;
+            border: 1px solid #ccc;
+            float: left;
+        }
+
+        .radar {
+            width: 200px;
+            height: 660px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 衣服种类柱状图 -->
+    <div class="box" id="main"></div>
+    <div class="box" id="main1"></div>
+    <div class="box" id="main2"></div>
+
+    <!-- <img src="http://p11.qhimg.com/dr/240_180_/t01f4ebe9b112948ce4.gif" alt=""> -->
+    <!-- 南丁格尔图 又称扇形图-->
+    <!--雷达图-->
+    <div class="radar" id="radar"></div>
+    <script src="js/echarts.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart2 = echarts.init(document.getElementById('main2'));
+        var my = echarts.init(document.getElementById('radar'));
+
+        // 扇形图，使用刚指定的配置项和数据显示图表。
+        myChart.setOption({
+            title: {
+                //text: 'ECharts 入门示例',
+                subtext: 'data from PM25.in',
+                sublink: 'http://www.pm25.in',
+                left: '30%',
+                bottom: '10%',
+                textStyle: {
+                    color: '#f00'
+                }
+            },
+            tooltip: { //气泡提示配置, 触发类型，默认数据触发，可选为：'axis'
+                trigger: 'item'
+            },
+            series: [{
+
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '30%',
+                    center: ['25%', '50%'],
+                    data: [{
+                            value: 235,
+                            name: '视频广告'
+                        },
+                        {
+                            value: 274,
+                            name: '联盟广告'
+                        },
+                        {
+                            value: 310,
+                            name: '邮件营销'
+                        },
+                        {
+                            value: 335,
+                            name: '直接访问'
+                        },
+                        {
+                            value: 400,
+                            name: '搜索引擎'
+                        }
+                    ]
+                }
+
+            ] //,
+
+        })
+        myChart1.setOption({
+            title: {
+                //text: 'ECharts 入门示例',
+                subtext: 'data from PM25.in',
+                sublink: 'http://www.pm25.in',
+                left: '30%',
+                bottom: '10%',
+                textStyle: {
+                    color: '#f00'
+                }
+            },
+            tooltip: { //气泡提示配置, 触发类型，默认数据触发，可选为：'axis'
+                trigger: 'item'
+            },
+            series: [{
+
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '30%',
+                    center: ['25%', '50%'],
+                    data: [{
+                            value: 235,
+                            name: '视频广告'
+                        },
+                        {
+                            value: 274,
+                            name: '联盟广告'
+                        },
+                        {
+                            value: 310,
+                            name: '邮件营销'
+                        },
+                        {
+                            value: 335,
+                            name: '直接访问'
+                        },
+                        {
+                            value: 400,
+                            name: '搜索引擎'
+                        }
+                    ]
+                }
+
+            ] //,
+
+        })
+        myChart2.setOption({
+            title: {
+                //text: 'ECharts 入门示例',
+                subtext: 'data from PM25.in',
+                sublink: 'http://www.pm25.in',
+                left: '30%',
+                bottom: '10%',
+                textStyle: {
+                    color: '#f00'
+                }
+            },
+            tooltip: { //气泡提示配置, 触发类型，默认数据触发，可选为：'axis'
+                trigger: 'item'
+            },
+            series: [{
+
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '30%',
+                    center: ['25%', '50%'],
+                    data: [{
+                            value: 235,
+                            name: '视频广告'
+                        },
+                        {
+                            value: 274,
+                            name: '联盟广告'
+                        },
+                        {
+                            value: 310,
+                            name: '邮件营销'
+                        },
+                        {
+                            value: 335,
+                            name: '直接访问'
+                        },
+                        {
+                            value: 400,
+                            name: '搜索引擎'
+                        }
+                    ]
+                }
+
+            ] //,
+
+        })
+
+        // 异步加载数据
+        /*$.get('data.json').done(function (data) {
+            // 填入数据
+            myChart.setOption({
+                xAxis: {
+                    data: data.categories
+                },
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: '销量',
+                    data: data.data
+                }]
+            });
+        });  */
+    </script>
+</body>
+
+</html>

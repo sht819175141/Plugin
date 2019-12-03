@@ -1,0 +1,45 @@
+/*通用样式*/
+/* 上下间距 */
+.margin_top{
+	margin-top:10px;
+}
+.margin_bottom{
+	margin-bottom:10px;
+}
+.margin_lr{
+	margin-left:0;
+	margin-right:0;
+}
+
+/*拖拽功能 */
+#div1{
+	margin:10px;
+	border:1px solid #ccc;
+}
+.drag_child{
+	border:1px solid #ccc;
+	width:33%;
+	display:inline-block;
+	height:300px;
+	overflow:auto;
+	cursor: move;
+	padding: 10px;
+	position: relative;
+}
+ .img_del{
+       	position:absolute;
+       	top:10px;
+       	right:10px;
+ }
+ .drag_parent{
+ 	min-width:770px;
+ }
+ .drag_save{
+	margin:10px 20px;
+	float:right;
+}
+.drag_title{
+	display:inline-block;
+	font-size:16px;
+	margin:18px 0 4px 30px;
+}

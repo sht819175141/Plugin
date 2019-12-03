@@ -1,0 +1,175 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <title>模拟下拉菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font: 14px '微软雅黑';
+            color: #555;
+            padding: 50px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .model-select-box {
+            width: 197px;
+            height: 27px;
+            line-height: 27px;
+            border: 1px solid #aaa;
+            float: left;
+            margin-right: 20px;
+            text-indent: 5px;
+            position: relative;
+        }
+
+        .model-select-text {
+            height: 27px;
+            padding-right: 27px;
+            background: url(http://t43-2.yunpan.360.cn/p/800-600.e692334dad266bef653533e12fa291286932eb10.3619c0.jpg?t=64368e238226776012c7ea2a6ad4dcce&d=20140221) no-repeat right 0;
+            cursor: pointer;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .model-select-option {
+            display: none;
+            position: absolute;
+            background: #fff;
+            width: 100%;
+            left: -1px;
+            border: 1px solid #aaa;
+        }
+
+        .model-select-option li {
+            height: 22px;
+            line-height: 22px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .model-select-option li.seleced {
+            background: #06C;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<p>模拟下拉菜单</p>
+
+<div class="model-select-box">
+    <div class="model-select-text" data-value="">广州-08</div>
+    <ul class="model-select-option">
+        <li data-option="1">上海-01</li>
+        <li data-option="2">北京-02</li>
+        <li data-option="3">沈阳-03</li>
+        <li data-option="4">天津-04</li>
+        <li data-option="5">武汉-05</li>
+        <li data-option="6">成都-06</li>
+        <li data-option="7">重庆-07</li>
+        <li data-option="8" class="seleced">广州-08</li>
+        <li data-option="9">拉萨-09</li>
+        <li data-option="10">石家庄-10</li>
+        <li data-option="11">乌鲁木齐-11</li>
+        <li data-option="12">济南-12</li>
+        <li data-option="13">哈尔滨-13</li>
+        <li data-option="14">吉林-14</li>
+    </ul>
+</div>
+<div class="model-select-box">
+    <div class="model-select-text" data-value="">北京-02</div>
+    <ul class="model-select-option">
+        <li data-option="1">上海-01</li>
+        <li data-option="2" class="seleced">北京-02</li>
+        <li data-option="3">沈阳-03</li>
+        <li data-option="4">天津-04</li>
+    </ul>
+</div>
+<div class="model-select-box">
+    <div class="model-select-text" data-value="">武汉-05</div>
+    <ul class="model-select-option">
+        <li data-option="1">上海-01</li>
+        <li data-option="2">北京-02</li>
+        <li data-option="3">沈阳-03</li>
+        <li data-option="4">天津-04</li>
+        <li data-option="5" class="seleced">武汉-05</li>
+    </ul>
+</div>
+<script src="cxx/jquery.min.js"></script>
+<script>
+    $(function () {
+        /*
+         * 模拟网页中所有的下拉列表select
+         */
+        function selectModel() {
+            var $box = $('div.model-select-box');
+            var $option = $('ul.model-select-option', $box);
+            var $txt = $('div.model-select-text', $box);
+            var speed = 10;
+            /*
+             * 单击某个下拉列表时，显示当前下拉列表的下拉列表框
+             * 并隐藏页面中其他下拉列表
+             */
+            $txt.click(function (e) {
+                $option.not($(this).siblings('ul.model-select-option')).slideUp(speed, function () {
+                    int($(this));
+                });
+                $(this).siblings('ul.model-select-option').slideToggle(speed, function () {
+                    int($(this));
+                });
+                return false;
+            });
+            //点击选择，关闭其他下拉
+            /*
+             * 为每个下拉列表框中的选项设置默认选中标识 data-selected
+             * 点击下拉列表框中的选项时，将选项的 data-option 属性的属性值赋给下拉列表的 data-value 属性，并改变默认选中标识 data-selected
+             * 为选项添加 mouseover 事件
+             */
+            $option.find('li').each(function (index, element) {
+                if ($(this).hasClass('seleced')) {
+                    $(this).addClass('data-selected');
+                }
+            })
+                    .mousedown(function () {
+                        $(this).parent().siblings('div.model-select-text').text($(this).text())
+                                .attr('data-value', $(this).attr('data-option'));
+
+                        $option.slideUp(speed, function () {
+                            int($(this));
+                        });
+                        $(this).addClass('seleced data-selected').siblings('li').removeClass('seleced data-selected');
+                        return false;
+                    })
+                    .mouseover(function () {
+                        $(this).addClass('seleced').siblings('li').removeClass('seleced');
+                    });
+            //点击文档，隐藏所有下拉
+            $(document).click(function (e) {
+                $option.slideUp(speed, function () {
+                    int($(this));
+                });
+            });
+            //初始化默认选择
+            function int(obj) {
+                obj.find('li.data-selected').addClass('seleced').siblings('li').removeClass('seleced');
+            }
+        }
+
+        selectModel();
+    })
+</script>
+</body>
+</html>

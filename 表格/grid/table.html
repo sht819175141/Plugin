@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap-table.css">
+</head>
+<body>
+
+	<div class="table-responsive">
+		<table id="table"></table>
+	</div>
+
+	<script src="jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="bootstrap-table.js"></script>
+	<script src="locale/bootstrap-table-zh-CN.js"></script>
+
+	<script>
+	var $table = $('#table'),
+       	selections = [];
+	$(function(){
+		  
+		
+		$table.bootstrapTable({
+			contentType:"application/x-www-form-urlencoded; charset=UTF-8",     //初始化编码 
+			data: [
+		    	{
+			        id: 1,
+			        name: 'Item 1',
+			        price: '$1'
+			    }, {
+			        id: 2,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 3,
+			        name: 'Item 2',
+			        price: '$2'
+			    }
+			    , {
+			        id: 4,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 5,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 6,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 7,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 8,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 9,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 10,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 11,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 12,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 13,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 14,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 15,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 16,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 17,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 18,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 19,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 20,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 21,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 22,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 23,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 24,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 25,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 26,
+			        name: 'Item 2',
+			        price: '$2'
+			    }
+			    , {
+			        id: 27,
+			        name: 'Item 2',
+			        price: '$2'
+			    }, {
+			        id: 28,
+			        name: 'Item 2',
+			        price: '$2'
+			    }
+			],
+			pagination: true, //分页
+			//paginationLoop:true,
+			paginationVAlign:"bottom",
+			paginationHAlign:'center',
+			pageNumber:1,
+			pageSize:10,
+			//pageList:[10, 25, 50, 100],
+			search:true,  //搜索框
+			showRefresh:true,    //刷新按钮
+			//sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+			cardView:true,  //设置为 true将显示card视图，适用于移动设备。否则为table试图，适用于pc
+			//detailView:true, //设置为 true 可以显示详细页面模式。
+			cache: false,        //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+			clickToSelect: true,     //是否启用点击选中行 设置true 将在点击行时，自动选择rediobox 和 checkbox
+			//showPaginationSwitch: false,//展示页数的选择？
+			striped: true,  //表格显示条纹
+			//sidePagination: "server", //表示服务端请求
+			//responseHandler:responseHandler, //在渲染页面数据之前执行的方法，此配置很重要!!!!!!! 
+			maintainSelected:true,  //分页记录选择的问题
+			columns: [
+		    	{
+		        	field: 'id',
+		        	title: 'Item ID',
+		        	align: 'center'
+		    	}, 
+		    	{
+		    	 	field: 'checkStatus',
+		    	 	checkbox: true
+		    	},  //给多选框赋一个field值为“checkStatus”用于更改选择状态!!!!!   
+            	{
+            		field: 'orderNumber',
+            		title: "订单编号",
+            		align:'center',width:'10%'
+            	}  ,
+		    	{	title: '操作',
+                    align: 'center',
+		    		formatter:function(value,row,index){  
+	                   var e = '<a href="#" mce_href="#" onclick="edit(\''+ row.id + '\')">编辑</a> ';  
+	                   var d = '<a href="#" mce_href="#" onclick="del(\''+ row.id +'\')">删除</a> ';  
+	                        return e+d;  
+                    }
+		    	},
+		    	{
+			        field: 'name',
+			        title: 'Item Name',
+			        align: 'center'
+			    }, 
+			    {
+			        field: 'price',
+			        title: 'Item Price',
+			        align: 'center'
+			    }
+			]
+		});
+
+		/*$table.on('check.bs.table check-all.bs.table ' +
+                'uncheck.bs.table uncheck-all.bs.table', function (e, rows) {
+            var ids = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                    return row.id;
+                }),
+                func = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'difference';
+            selections = _[func](selections, ids);
+        });*/
+		//选中事件操作数组  
+	    /*var union = function(array,ids){  
+	        $.each(ids, function (i, id) {  
+	            if($.inArray(id,array)==-1){  
+	                array[array.length] = id;  
+	            }  
+	             });  
+	            return array;  
+	    }; */ 
+	    //取消选中事件操作数组  
+	   /* var difference = function(array,ids){  
+            $.each(ids, function (i, id) {  
+                 var index = $.inArray(id,array);  
+                 if(index!=-1){  
+                     array.splice(index, 1);  
+                 }  
+             });  
+            return array;  
+	    };  
+	    var _ = {"union":union,"difference":difference};  
+	    //绑定选中事件、取消事件、全部选中、全部取消  
+	    $table.on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table', function (e, rows) {  
+	            var ids = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {  
+	                     return row.id;  
+	            });  
+	             func = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'difference';  
+	             selectionIds = _[func](selectionIds, ids);   
+	     }); */
+
+
+
+	})
+		 
+		
+    //表格分页之前处理多选框数据  
+    /*function responseHandler(res) {  
+      $.each(res.rows, function (i, row) {  
+          row.checkStatus = $.inArray(row.id, selectionIds) != -1;  //判断当前行的数据id是否存在与选中的数组，存在则将多选框状态变为true  
+      });  
+      return res;  
+    }*/
+  /*  function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.state = $.inArray(row.id, selections) !== -1;
+        });
+        return res;
+    }*/
+	</script>
+</body>
+</html>

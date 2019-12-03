@@ -1,0 +1,57 @@
+  #filter
+        {
+        	width:620px;
+        	height:auto;
+        	margin-left:auto;
+        	margin-right:auto;
+        	font-size:12px;
+        }
+        
+        #filter dl
+        {
+        	padding:0;
+        	margin-top:0;
+        	margin-bottom:0;
+        	clear:both;
+        	padding:4px 0;        
+        }
+        
+        #filter dt,dd
+        {
+        	display:block;
+        	float:left;
+        	width:auto;
+        	padding:0;
+        	margin:3px 0;        	       	
+        }
+        
+        #filter dt
+        {
+        	height:14px;
+        	padding-bottom:4px;
+        	font-weight:bold;
+        	color:#333333;        	
+        }
+        
+        #filter dd
+        {
+        	color:#005AA0;
+        	margin-right:8px;
+        }
+        
+        #filter a
+        {
+        	cursor:pointer;
+        }
+        
+        .seling
+        {
+            background-color:#005AA0;
+        	color:#FFFFFF;
+        }
+        
+        .seled
+        {
+        	background-color:#005AA0;
+        	color:#FFFFFF;
+        }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			* { margin: 0; padding: 0;}
+			body{ background-color:#1B1B1B}
+			#div1{ width: 800px; height: 150px; position: relative; margin: 100px auto;overflow: hidden;}
+			#div1 ul { width: 800px; height: 150px; position: relative; }
+			#div1 ul li { height: 150px; float: left; list-style: none; padding-right:20px;}
+			#div1 ul li img { width: 200px; height: 150px; display: inline-block;}
+			a{ color: #B4B4B4; }
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var odiv = document.getElementById('div1');
+				var oul = odiv.getElementsByTagName('ul')[0];
+				var ali = oul.getElementsByTagName('li');
+				var spa = 2;				
+				oul.innerHTML=oul.innerHTML+oul.innerHTML;
+				oul.style.width=ali[0].offsetWidth*ali.length+'px';
+				function move(){
+					if(oul.offsetLeft<-oul.offsetWidth/2){
+						oul.style.left='0';
+					}
+					if(oul.offsetLeft>0){
+						oul.style.left=-oul.offsetWidth/2+'px'
+					}
+					oul.style.left=oul.offsetLeft+spa+'px';
+				}
+				var timer = setInterval(move,30)
+				
+				odiv.onmousemove=function(){clearInterval(timer);}
+				odiv.onmouseout=function(){timer = setInterval(move,30)};
+			}
+		</script>
+	</head>
+	<body>
+			<a href="#" style=" display: block; margin:0 auto; width: 50px;">向左走</a>
+			<a href="#" style=" display: block; margin:0 auto; width: 50px;">向右走</a>
+
+		<div id="div1">
+			<ul>
+				<li><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+			</ul>			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/swiper.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .blue-slide {
+            background: #4390EE;
+        }
+
+        .red-slide {
+            background: #CA4040;
+        }
+
+        .orange-slide {
+            background: #FF8604;
+        }
+
+        .swiper-slide {
+            line-height: 300px;
+            color: #000000;
+            font-size: 36px;
+            text-align: center;
+        }
+        .swiper-slide img{
+            width: 100%;
+        }
+        .one,
+        .two {
+            width: 600px;
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container one">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide blue-slide"><img src="../../../../images/1.gif"></div>
+            <div class="swiper-slide red-slide"><img src="../../../../images/14.jpg"></div>
+            <div class="swiper-slide orange-slide"><img src="../../../../images/14.jpg"></div>
+            <div class="swiper-slide blue-slide"><img src="../../../../images/1.jpg"></div>
+            <div class="swiper-slide red-slide"><img src="../../../../images/18.jpg"></div>
+            <div class="swiper-slide orange-slide"><img src="../../../../images/16.jpg"></div>
+        </div>
+    </div>
+
+    <div class="swiper-container two">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide blue-slide">slider1</div>
+            <div class="swiper-slide red-slide">slider2</div>
+            <div class="swiper-slide orange-slide">slider3</div>
+            <div class="swiper-slide blue-slide">slider4</div>
+            <div class="swiper-slide red-slide">slider5</div>
+            <div class="swiper-slide orange-slide">slider6</div>
+        </div>
+    </div>
+    <script src="../../../../jQueryVersion/jquery-1.8.3.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script language="javascript">
+        var mySwiper = new Swiper('.one', {
+            effect: 'fade',
+            loop: true,
+            autoplay: 2000,
+            speed: 1000,
+            direction: "horizontal",
+            autoHeight: true, //高度随内容变化
+            watchOverflow: true, //因为仅有1个slide，swiper无效
+            onSlideChangeEnd:function(swiper){ 
+                console.log(swiper.activeIndex); 
+            } 
+        })
+        var mySwiper = new Swiper('.two', {
+            effect: 'fade',
+            loop: true,
+            autoplay: 2000,
+            speed: 1000,
+            direction: "vertical",
+            autoHeight: true, //高度随内容变化
+            watchOverflow: true, //因为仅有1个slide，swiper无效
+            on: {
+                slideChangeTransitionStart: function () {
+                    console.log(this.activeIndex);
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>

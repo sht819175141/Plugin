@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts</title>
+</head>
+
+<body>
+    <div id="main" style="height:400px"></div>
+    <script src='lib/echarts.js'></script>
+    <script src='lib/theme/dark.js'></script>
+    <script type="text/javascript">
+        //标签式单文件引入
+
+        // 1. 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('main'), 'dark');
+        // 2. 指定图标的配置项和数据
+        var option = {
+            //标题
+            title: {
+                text: '这是我的第一个图表', //主标题
+                subtext: '纯属虚构' //副标题
+            },
+            //鼠标悬停提示框
+            tooltip: {
+                trigger: 'axis'
+            },
+            //工具栏
+            toolbox: {
+                show: true,
+                feature: {
+                    //动态数据类型切换
+                    magicType: {
+                        show: true,
+                        title: {
+                            line: '动态类型切换-折线图',
+                            bar: '动态类型切换-柱形图',
+                            stack: '动态类型切换-堆积',
+                            tiled: '动态类型切换-平铺'
+                        },
+                        type: ['line', 'bar', 'stack', 'tiled']
+                    },
+                    //数据视图
+                    dataView: {
+                        show: true
+                    },
+                    dataZoom: {
+                        show: true,
+                        title: {
+                            dataZoom: '区域缩放',
+                            dataZoomReset: '区域缩放-后退'
+                        }
+                    },
+                    //保存图片
+                    saveAsImage: {
+                        show: true
+                    },
+                    //还原
+                    restore: {
+                        show: true,
+                        title: '还原',
+                        color: 'black'
+                    }
+                }
+            },
+            //图例
+            legend: {
+                data: ['周一', "周二", "周三"]
+            },
+            //x轴
+            xAxis: [{
+                type: 'category',
+                data: ["1111", "2222", "3333", "4444", "5555"]
+            }],
+            //y轴
+            yAxis: [{
+                type: 'value'
+            }],
+            //数据
+            series: [{
+                    "name": "周一",
+                    "type": "bar",
+                    "data": [5, 20, 40, 10, 10]
+                },
+                {
+                    "name": "周二",
+                    "type": "line",
+                    "data": [80, 10, 20, 55, 28]
+                }, {
+                    "name": "周三",
+                    "type": "bar",
+                    "data": [20, 30, 80, 5, 77]
+                }
+
+            ]
+        };
+        // 3. 为echarts对象加载数据
+        myChart.setOption(option);
+        myChart.setOption({
+            title: {
+                text: "This is my first chart!"
+            }
+        });
+    </script>
+</body>
+
+</html>

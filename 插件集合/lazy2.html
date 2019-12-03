@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		img{
+			width:200px;
+			height:200px;
+			margin:100px;
+		}
+		.box{
+			width:200px;
+			height:200px;
+			position:fixed;
+			left:0;
+			top:0;
+			background:red;
+		}
+	</style>	
+</head>
+<body>
+	<div class="wrap">
+	</div>
+	<div class="box"></div>
+<script src="js/browser.js" charset="utf-8"></script>
+ <script src="js/react.js" charset="utf-8"></script>
+ <script src="js/react-dom.js" charset="utf-8"></script>
+ <script type="text/babel">
+
+ 	var L=React.createClass({
+ 
+ 	change(){
+ 		console.log("aa")
+ 		console.log(this)
+ 	},
+ 	render() {
+ 		return <div onClick={this.change}>this is the createClasS</div>
+ 	}
+ 	})
+
+class LazyImg extends React.Component{
+	constructor(props) {
+	super(props);
+		this.Imgs=this.props.imgs;	
+	}
+	componentDidMount() {
+		var imgs=document.querySelectorAll("img");
+		console.log(imgs)
+		window.onscroll=function(){
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+				scrollTop+=document.documentElement.clientHeight;
+				for(var i=0;i<imgs.length;i++){
+					if(scrollTop>imgs[i].offsetTop){
+						imgs[i].src=imgs[i].getAttribute("data-src");
+					}
+				}
+
+		}
+		window.onload=function(){
+			window.onscroll();
+		}
+	}
+	render(){
+		var brr=[];
+		for(var i=0;i<this.Imgs.length;i++){
+			brr.push(<img src='' data-src={"img/"+this.Imgs[i]}  key={i} />)
+		}
+		return <div>{brr}</div>
+	}
+}
+
+var arr=['logo.png','logo1.png','logo.png','logo1.png','logo.png','logo1.png','logo.png','logo1.png']
+ ReactDOM.render(
+ 	<LazyImg name='susu' imgs={arr}/>,
+ 	document.querySelector(".wrap")
+ 	)
+
+ ReactDOM.render(
+ 	<L/>,
+ 	document.querySelector(".box")
+ 	)
+</script>
+</body>
+</html>

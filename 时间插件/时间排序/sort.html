@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	.wrap ul {
+	width: 90%;
+	display: table;
+	margin: auto;
+	}
+
+	.wrap ul li {
+	line-height: 5rem;
+	width: 100%;
+	}
+
+	.wrap ul li label {
+	width: 23%;
+	float: left;
+	font-size: 1.6rem;
+	}
+
+	.wrap ul li input, .wrap ul li span, .wrap ul li textarea, .wrap ul li div, .wrap ul li table {
+	width: 75%;
+	}
+
+	.wrap ul li input {
+	height: 3rem;
+	}
+
+	.wrap ul li input[type="checkbox"] {
+	width: 10px;
+	height: 10px;
+	}
+
+	.wrap ul li td {
+	width: 3rem;
+	}
+
+	.wrap ul .on {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+	}
+
+	.wrap ul .on button {
+	height: 3rem;
+	margin-bottom: 3rem;
+	border-radius: 0.5rem;
+	font-size: 1.8rem;
+	}
+</head>
+<body>
+	<select name="" id="ccc"> 
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+
+		<option>10</option>
+		<option>2</option>
+		<option>3</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+	</select>	
+	<script src="jquery.min.js"></script>	
+	<script>
+	$("#ccc").val("10");
+		//$("#ccc").find("option[value="2"]").prop("selected",true);
+		/*var data = {
+		    "rows": [
+			    {
+			        "name": "张三",
+			        "time": "2011-4-1 0:00:00",
+			    },{
+			        "name": "李四",
+			        "time": "2015-5-6 12:30:00",
+			    },
+			    {
+			        "name": "赵六",
+			        "time": "2011-9-1 22:10:00",
+			    },
+			    {
+			        "name": "王五",
+			        "time": "2012-10-1 22:10:00",
+			    },
+			    {
+			        "name": "王五",
+			        "time": "2012-10-1 10:10:00",
+			    }
+		    ]
+		};
+		var rows = data.rows;
+		rows.sort(function(a,b){
+		    return Date.parse(a.time) - Date.parse(b.time);//时间正序
+		});
+		for(var i =0,l=rows.length;i<l;i++){
+		    console.log(rows[i].name + " | " + rows[i].time);
+		}*/
+	</script>
+</body>
+</html>

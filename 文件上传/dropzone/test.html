@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Flask upload with Dropzone example</title>
+  <link rel="stylesheet" href="dropzone.css" type="text/css" />
+</head>
+
+<body>
+  <div id="myId" class="dropzone" style="width: 800px; height: 300px;">点我上传</div>
+  <script src="dropzone.js"></script>
+  <!--<script src="{{ url_for('static', filename='jquery.js') }}"></script>-->
+  <script type="text/javascript">
+    //第二种配置，这种使用的是div做上传区域时使用的配置
+    Dropzone.autoDiscover = false; //不知道该行有什么用，欢迎高手下方评论解答
+    $("#myId").dropzone({
+      url: "{{ url_for('upload_file') }}",
+      addRemoveLinks: true,
+      method: 'post',
+      filesizeBase: 1024
+    });
+  </script>
+
+</body>
+
+</html>

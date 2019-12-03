@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<style type="text/css">
+	</style>
+</head>
+
+<body>
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-2" style="padding:0">
+					<div class="row" style="margin:0">
+						<span class="drag_title">图表名称</span>
+					</div>
+					<div id="div1" class="row" ondrop="drop(event)" ondragover="allowDrop(event)">
+						<div class="col-lg-12 margin_top">
+							<button id="drag1" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+		    						<span class="fa fa-lg fa-area-chart"></span>
+		    					</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top">
+							<button id="drag2" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+		    						<span class="fa fa-lg fa-bar-chart"></span>
+		    					</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top">
+							<button id="drag3" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-pie-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top">
+							<button id="drag4" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top ">
+							<button id="drag5" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top">
+							<button id="drag6" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top">
+							<button id="drag7" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top">
+							<button id="drag8" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+						<div class="col-lg-12 margin_top margin_bottom">
+							<button id="drag9" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+							<label>图表名称</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-10">
+					<div class="row drag_parent">
+						<div id="div2" class="drag_child" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+						<div id="div3" class="drag_child" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+						<div id="div4" class="drag_child" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+						<div id="div5" class="drag_child" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+						<div id="div6" class="drag_child" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+						<div id="div7" class="drag_child" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		//允许拖放
+		function allowDrop(event) {
+			event.preventDefault(); //默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式
+		}
+
+		//拖放
+		function drag(event) {
+			event.dataTransfer.setData("Text", event.target.id);
+			event.dataTransfer.setData("first01", event.target.parentElement.parentElement.id); //获取第一个div的id
+			event.dataTransfer.setData("first02", event.target.parentElement.id); //左侧第一个div的id
+			event.dataTransfer.setData("buttonId", event.target.parentElement.firstChild.id); //获取第一个div的button的id
+
+		}
+		var count = 1;
+		var map = {};
+		var dragId = 4;
+		//放置数据
+		function drop(event) {
+			event.preventDefault();
+			var data = event.dataTransfer.getData("Text");
+			var first01 = event.dataTransfer.getData("first01");
+			var first02 = event.dataTransfer.getData("first02");
+			var buttonId = event.dataTransfer.getData("buttonId");
+			if (first01 == 'div1' && event.target.id != 'div1' && event.target.id.substring(0, 4) != 'copy') {
+				if (event.target.childNodes.length == 0) {
+					var idVO = "button" + count;
+					document.getElementById(event.target.id).innerHTML = '<button id=' + idVO + ' class="btn btn-xs btn-default img_del" onclick="del(this)"><span class="fa fa-close"></span></button>';
+					var item = document.getElementById(data).cloneNode(true);
+					item.id = "copy" + count; //设置copy对象的id
+					event.target.appendChild(item);
+					//moveplace(event); //判断落在中间还是两边
+					document.getElementById(data).draggable = false; //禁止拖动
+					map[idVO] = data;
+					count++;
+				} else {
+					alert("请先删除原图表，再添加！");
+				}
+			} else if (first02 != 'div1' && event.target.id != 'div1' && $("#" + first02).children() != "" && event.target.id.substring(0, 4) != 'copy' && event.target.id.substring(0, 4) != 'drag') {
+				//右侧内部移动换位
+				if (event.target.childNodes.length == 0) {
+					document.getElementById(event.target.id).innerHTML = '<button id=' + buttonId + ' class="btn btn-xs btn-default img_del" onclick="del(this)"><span class="fa fa-close"></span></button>';
+					event.target.appendChild(document.getElementById(data));
+					document.getElementById(first02).innerHTML = '';
+				}
+			}
+		}
+
+		//删除图形
+		function del(buttonId) {
+			//删除时判断该行是否群不为空，若为空恢复到三个div.
+			var slefParentID = parseInt($(buttonId).parent().attr("id").split("v")[1]);
+			var delParent = $(buttonId).parent().prop("className");
+
+			var imgId = map[buttonId.id];
+			$(buttonId).next().remove();
+			$(buttonId).remove();
+			$("#" + imgId).removeAttr("style"); //修改style属性
+			$("#" + imgId).attr("draggable", true); //允许拖动
+
+		}
+	</script>
+</body>
+
+</html>

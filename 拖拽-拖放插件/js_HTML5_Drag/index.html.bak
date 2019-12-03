@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript">
+        //允许拖放
+        function allowDrop(event) {
+            event.preventDefault();//默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式
+        }
+
+        //拖放
+        function drag(event) {
+            event.dataTransfer.setData("Text", event.target.id);
+            event.dataTransfer.setData("first01", event.target.parentElement.parentElement.id);   //获取第一个div的id
+            event.dataTransfer.setData("first02", event.target.parentElement.id);   //内部第一个div的id
+            event.dataTransfer.setData("buttonId", event.target.parentElement.firstChild.id);   //获取第一个div的button的id
+       		
+        }
+        var count = 1;
+        var map = {};
+        var dragId=4;
+        //放置数据
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("Text");
+            var first01 = event.dataTransfer.getData("first01");
+            var first02 = event.dataTransfer.getData("first02");
+            var buttonId = event.dataTransfer.getData("buttonId");
+            if (first01 == 'div1' && event.target.id != 'div1' && event.target.id.substring(0, 4) != 'copy') {
+               if(event.target.childNodes.length==0){
+               		var idVO = "button" + count;
+                	document.getElementById(event.target.id).innerHTML = '<button id=' + idVO + ' class="btn btn-xs btn-default img_del" onclick="del(this)"><span class="fa fa-close"></span></button>';
+                	var item = document.getElementById(data).cloneNode(true);
+                	item.id = "copy" + count;    //设置copy对象的id
+                	event.target.appendChild(item);
+                	moveplace(event);//判断落在中间还是两边
+                	document.getElementById(data).style.width = '100px';  //修改style属性
+	                document.getElementById(data).draggable = false;     //禁止拖动
+	                $("#"+item.id).children().css("font-size","20rem");
+	                $("#"+item.id).css("padding","40px 16px");
+	                map[idVO] = data;
+	                count++;
+                }else{
+                	alert("请先删除原图表，再添加！");
+                }
+            } else if (first02 != 'div1' && event.target.id != 'div1'&& $("#"+first02).children()!="" && event.target.id.substring(0, 4) != 'copy' && event.target.id.substring(0, 4) != 'drag') {
+                 //右侧内部移动换位
+                 if(event.target.childNodes.length==0){
+	                 	document.getElementById(event.target.id).innerHTML = '<button id=' + buttonId + ' class="btn btn-xs btn-default img_del" onclick="del(this)"><span class="fa fa-close"></span></button>';
+		                event.target.appendChild(document.getElementById(data));
+		                document.getElementById(first02).innerHTML = '';
+		                //判断移动后该行时都为空 若为空 删除该行。
+		                if($("#"+first02).prop("className").indexOf("drag_left")>0){
+		                	if($("#"+first02).next().is(":empty")){
+		                		$("#"+first02).next().remove();
+		                		$("#"+first02).remove();
+		                	}
+		                }else if($("#"+first02).prop("className").indexOf("drag_right")>0){
+		                	if($("#"+first02).prev().is(":empty")){
+		                		$("#"+first02).prev().remove();
+		                		$("#"+first02).remove();
+		                	}
+		                }else{
+		                	$("#"+first02).remove();
+		                }//判断结束
+		                var item = document.getElementById(data).cloneNode(true);
+		                var dragName=event.target.className;
+		                //移入后判断 所在的位置  
+	                	if(dragName.indexOf("drag_left")>0){
+	                		if($("#"+item.id).parent().next().prop("className").indexOf("drag_middle")>0){
+	                			$("#"+item.id).parent().next().remove();
+	                			$("#"+item.id).parent().css("width","49.6%");
+	                			$("#"+item.id).parent().next().css("width","49.6%");
+	                		}
+	                	}else if(dragName.indexOf("drag_middle")>0){
+	                		if($("#"+item.id).parent().next().prop("className").indexOf("drag_right")>0||
+	                			$("#"+item.id).parent().prev().prop("className").indexOf("drag_left")>0){
+	                				$("#"+item.id).parent().next().remove();
+	                				$("#"+item.id).parent().prev().remove();
+	                		}
+	                		$("#"+item.id).parent().css("width","99.5%");
+	                	}else{
+	                		if($("#"+item.id).parent().prev().prop("className").indexOf("drag_middle")>0){
+	                			$("#"+item.id).parent().prev().remove();
+	                			$("#"+item.id).parent().css("width","49%");
+	                			$("#"+item.id).parent().prev().css("width","49%");
+	                		}
+	                	}//判断结束
+                 }else{
+                	alert("请先删除原图表，再添加！");
+                }
+            }
+             //移动时判断该行是否不为空，若全部不为空新增三个div.
+            var isEmpty=true;
+            $(".drag_parent .drag_child").each(function(){
+            	if($('.drag_child').is(":empty")){
+	            	isEmpty=true;
+	            }else{
+	            	isEmpty=false;
+	            } 
+            });
+           if(false==isEmpty){
+            	var drag_child='<div id=div'+(dragId+1)+' class="drag_child drag_left" ondragover="allowDrop(event)" ondrop="drop(event)"></div>\
+		        			<div id=div'+(dragId+2)+' class="drag_child drag_middle" ondragover="allowDrop(event)" ondrop="drop(event)"></div>\
+		        			<div id=div'+(dragId+3)+' class="drag_child drag_right" ondragover="allowDrop(event)" ondrop="drop(event)"></div>';
+		        $(".drag_parent").append(drag_child);
+		        dragId=dragId+3;
+            } //判断结束
+        }
+		
+		//判断移入得位置在两边还是中间
+		function moveplace(event){
+			var data = event.dataTransfer.getData("Text");
+			var item = document.getElementById(data).cloneNode(true);
+			item.id = "copy" + count;
+			var dragName=event.target.className;
+           	if(dragName.indexOf("drag_left")>0){
+           		if($("#"+item.id).parent().next().prop("className").indexOf("drag_middle")>0){
+           			$("#"+item.id).parent().next().remove();
+           			$("#"+item.id).parent().css("width","49.6%");
+           			$("#"+item.id).parent().next().css("width","49.6%");
+           		}
+           	}else if(dragName.indexOf("drag_middle")>0){
+           		if($("#"+item.id).parent().next().prop("className").indexOf("drag_right")>0||
+           			$("#"+item.id).parent().prev().prop("className").indexOf("drag_left")>0){
+           				$("#"+item.id).parent().next().remove();
+           				$("#"+item.id).parent().prev().remove();
+           		}
+           		$("#"+item.id).parent().css("width","99.5%");
+           	}else{
+           		if($("#"+item.id).parent().prev().prop("className").indexOf("drag_middle")>0){
+           			$("#"+item.id).parent().prev().remove();
+           			$("#"+item.id).parent().css("width","49%");
+           			$("#"+item.id).parent().prev().css("width","49%");
+           		}
+           	}//判断结束
+		}
+		
+		//删除图形
+        function del(buttonId) {
+            //删除时判断该行是否群不为空，若为空恢复到三个div.
+            var slefParentID=parseInt($(buttonId).parent().attr("id").split("v")[1]);
+            var delParent=$(buttonId).parent().prop("className");
+            if(delParent.indexOf("drag_middle")>0){
+            	$(buttonId).parent().before('<div id=div'+(slefParentID-1)+' class="drag_child drag_left" ondragover="allowDrop(event)" ondrop="drop(event)"></div>');
+            	$(buttonId).parent().after('<div id=div'+(slefParentID+1)+' class="drag_child drag_right" ondragover="allowDrop(event)" ondrop="drop(event)"></div>');
+            	$(buttonId).parent().css("width","33%"); 
+            }else if(delParent.indexOf("drag_left")>0){
+            	if($(buttonId).parent().next().is(":empty")){
+            		$(buttonId).parent().after('<div id=div'+(slefParentID+1)+' class="drag_child drag_middle" ondragover="allowDrop(event)" ondrop="drop(event)"></div>');
+            		$(buttonId).parent().css("width","33%");
+            		$(buttonId).parent().next().next().css("width","33%");
+            	}
+            }else{
+            	if($(buttonId).parent().prev().is(":empty")){
+            		$(buttonId).parent().before('<div id=div'+(slefParentID-1)+' class="drag_child drag_middle" ondragover="allowDrop(event)" ondrop="drop(event)"></div>');
+            		$(buttonId).parent().css("width","33%");
+            		$(buttonId).parent().prev().prev().css("width","33%");
+            	}
+            }//判断结束
+            var imgId = map[buttonId.id];
+            $(buttonId).next().remove();
+            $(buttonId).remove();
+            $("#"+imgId).removeAttr("style");  //修改style属性
+           	$("#"+imgId).attr("draggable",true);    //允许拖动
+           	
+        }
+
+    </script>
+	<style type="text/css">
+       
+   	</style>
+	</head>
+	<body>
+		<div class="content">
+    		<div class="container-fluid">
+    			<!-- 面包屑导航 -->
+            	<div class="row">
+	        		<ol class="breadcrumb">
+					    <li>自定义</a></li>
+					    <li>自定义排版</li>
+					</ol>
+		        </div>
+		        <div class="row">
+		        	<div class="col-xs-2" style="padding:0">
+		        		<div class="row" style="margin:0">
+		        			<span class="drag_title">图表名称</span>
+		        		</div>	
+		        		<div id="div1" class="row" ondrop="drop(event)" ondragover="allowDrop(event)">
+		        			<div class="col-lg-12 margin_top" >
+		        				<button id="drag1" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+		    						<span class="fa fa-lg fa-area-chart"></span>
+		    					</button>
+		    					<label>图表名称</label>
+		        			</div>
+		        			<div class="col-lg-12 margin_top">
+								<button id="drag2" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+		    						<span class="fa fa-lg fa-bar-chart"></span>
+		    					</button>
+		    					<label>图表名称</label>
+							</div>
+							<div class="col-lg-12 margin_top">
+								<button id="drag3" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-pie-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>	
+							<div class="col-lg-12 margin_top">
+								<button id="drag4" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>
+							<div class="col-lg-12 margin_top ">
+								<button id="drag5" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>	
+							<div class="col-lg-12 margin_top">
+								<button id="drag6" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>	
+							<div class="col-lg-12 margin_top">
+								<button id="drag7" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>				    				
+							<div class="col-lg-12 margin_top">
+								<button id="drag8" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>				    				
+							<div class="col-lg-12 margin_top margin_bottom">
+								<button id="drag9" class="btn btn-lg btn-default" draggable="true" ondragstart="drag(event)">
+			    					<span class="fa fa-lg fa-line-chart"></span>
+			    				</button>
+			    				<label>图表名称</label>
+							</div>				    				
+						</div>
+		        	</div>
+		        	<div class="col-xs-10">
+		        		<div class="row ">
+		        			<button class="btn btn-default drag_save">保存</button>
+		        		</div>
+		        		<div class="row drag_parent">
+		        			<div id="div2" class="drag_child drag_left" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+	        				<div id="div3" class="drag_child drag_middle" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        					<div id="div4" class="drag_child drag_right" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+		        		</div>	
+		        	</div>
+		        </div>
+		     </div> 	
+		 </div>
+		 
+	
+	</body>
+	
+</html>

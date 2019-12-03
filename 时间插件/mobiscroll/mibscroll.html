@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <title></title>
+  <link href="css/mobiscroll_003.css" rel="stylesheet" type="text/css">
+  <link href="css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+  <link href="css/mobiscroll.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="wrap">
+    <ul>
+      <li><span>时间点名称设置</span><input type="text" name="name" id="name" placeholder="如:上午"></li>
+      <li><span>开始上班时间</span><input type="text" name="startWorktime" id="startWorktime"></li>
+      <li><span>上班时间点</span><input type="text" name="worktime" id="worktime"></li>
+      <li><span>签退开始</span><input type="text" name="signOutStarttime" id="signOutStarttime">
+        <li><span>签退结束</span><input type="text" name="signOutEndtime" id="signOutEndtime">
+    </ul>
+  </div>
+  </div>
+  <script src="jquery.min.js"></script>
+  <script src="js/mobiscroll_002.js"></script>
+  <script src="js/mobiscroll_004.js"></script>
+  <script src="js/mobiscroll.js"></script>
+  <script src="js/mobiscroll_003.js"></script>
+  <script src="js/mobiscroll_005.js"></script>
+  <script>
+    $(function() {
+      var currYear = (new Date()).getFullYear();
+      var opt = {};
+      opt.date = {
+        preset: 'date'
+      };
+      opt.datetime = {
+        preset: 'datetime'
+      };
+      opt.time = {
+        preset: 'time'
+      };
+      opt.default = {
+        theme: 'android-ics light', //皮肤样式
+        display: 'modal', //显示方式
+        mode: 'scroller', //日期选择模式
+        dateFormat: 'yyyy-mm-dd',
+        lang: 'zh',
+        showNow: true,
+        nowText: "今天",
+        startYear: currYear - 5, //开始年份
+        endYear: currYear + 20 //结束年份
+      };
+      var optData = $.extend(opt['date'], opt['default']);
+      var optTime = $.extend(opt['time'], opt['default']);
+      var optDateTime = $.extend(opt['datetime'], opt['default']);
+      //年月日，时分
+      $("#startWorktime").mobiscroll(optDateTime).datetime(optDateTime);
+      //年月日
+      $("#signOutStarttime").mobiscroll(optData).data(optData);
+      //年月日
+      $("#signOutEndtime").mobiscroll(optTime).time(optTime);
+    })
+  </script>
+
+</body>
+
+</html>

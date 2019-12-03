@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css.css"/>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div class="test-div">
+
+</div>
+<a class="btntest0 btntest">点击生成地域</a>
+<a class="btntest1 btntest">点击打印被选择地域的id(f12在控制台中查看结果)</a>
+<a class="btntest2 btntest">点击选中与后台id值相符的地区</a>
+</body>
+<script src="js/RegionalChoice.js"></script>
+<script>
+    $(function () {
+        //模拟后台传过来的被选中input的id
+        var IdArr = [102,201001,202002,203003,2021,2022];
+//由于此插件的input全选的歧义，此处传的数组要求只传最低一级的id即可
+//即：如果有三级城市只传第三级的id，如果只有二级没有三级，只用传第二级id即可
+//模拟后台所有地域数据
+        var datas = [{
+            id: 1,
+            name: "华北北京",
+            children:[{
+                id: 101,
+                name: "北京"
+            },{
+                id: 102,
+                name: "天津"
+            },{
+                id: 103,
+                name: "河北",
+                children:[{
+                    id: 103001,
+                    name:"石家庄"
+                },{
+                    id: 103002,
+                    name:"保定"
+                },{
+                    id: 103003,
+                    name:"承德"
+                }]
+            }]
+        },{
+            id: 2,
+            name: "华中",
+            children:[{
+                id: 201,
+                name: "河南",
+                children:[{
+                    id: 201001,
+                    name:"郑州市"
+                },{
+                    id: 202002,
+                    name:"南阳市"
+                },{
+                    id: 203003,
+                    name:"洛阳市"
+                }]
+            },{
+                id: 202,
+                name: "湖北",
+                children:[{
+                    id: 2021,
+                    name:"武汉市"
+                },{
+                    id: 2022,
+                    name:"黄石市"
+                },{
+                    id: 2023,
+                    name:"十堰市"
+                }]
+            },{
+                id:203,
+                name: "湖南",
+                children:[{
+                    id:2031,
+                    name:"长沙市"
+                },{
+                    id:2032,
+                    name:"株洲市"
+                },{
+                    id:2033,
+                    name:"衡阳市"
+                }]
+            }]
+        }]
+        /* 使用说明*/
+        //点击生成地域
+        $(".btntest0").click(function () {
+            GetRegionPlug(datas);
+        })
+        //点击打印被选择地域的id,此id只包括最低一级地区的id，可以传入后台后直接拿来读取使用
+        $(".btntest1").click(function(){
+            console.log(GetChecked());//返回的是一id数组
+        })
+        //点击选中与后台id数组值相符的地区。注意此id数组的条件限制
+        $(".btntest2").click(function () {
+            SetChecked(IdArr);
+        })
+    })
+</script>
+</html>
